@@ -1,0 +1,39 @@
+# Dependencias (se instalan con npm install)
+node_modules/
+
+# Variables de entorno con credenciales (usar .env.example como plantilla)
+.env
+.env.local
+.env.*.local
+
+# Cliente Prisma generado (se crea con npx prisma generate o npm install)
+src/generated/
+
+# Build y caché de Next.js
+.next/
+out/
+build/
+.turbo/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editores / IDE (opcional, no necesarios para ejecutar el proyecto)
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Despliegue
+.vercel/

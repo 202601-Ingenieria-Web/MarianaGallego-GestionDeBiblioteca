@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+enum Rol {
+  ADMIN
+  USER
+}
+
+enum TipoMovimiento {
+  ENTRADA
+  SALIDA
+}
+
+model Usuario {
+  id                 Int      @id @default(autoincrement())
+  correo             String   @unique
+  hashContrasena     String
+  nombre             String
+  imagen             String?
+  rol                Rol      @default(USER)
+  fechaCreacion      DateTime @default(now())
+  fechaActualizacion DateTime @updatedAt
+
+  librosCreados Libro[]      @relation("LibrosCreadosPorUsuario")
+  movimientos   Movimiento[] @relation("MovimientosEjecutadosPorUsuario")
+
+  @@map("usuarios")
+}
+
+model Libro {
+  id                 Int      @id @default(autoincrement())
+  nombre             String
+  saldo              Int      @default(0)
+  creadoPorId        Int
+  fechaCreacion      DateTime @default(now())
+  fechaActualizacion DateTime @updatedAt
+
+  creadoPor   Usuario      @relation("LibrosCreadosPorUsuario", fields: [creadoPorId], references: [id], onDelete: Restrict)
+  movimientos Movimiento[]
+
+  @@index([creadoPorId])
+  @@map("libros")
+}
+
+model Movimiento {
+  id             Int            @id @default(autoincrement())
+  tipo           TipoMovimiento
+  cantidad       Int
+  libroId        Int
+  ejecutadoPorId Int
+  fechaCreacion  DateTime       @default(now())
+
+  libro        Libro   @relation(fields: [libroId], references: [id], onDelete: Restrict)
+  ejecutadoPor Usuario @relation("MovimientosEjecutadosPorUsuario", fields: [ejecutadoPorId], references: [id], onDelete: Restrict)
+
+  @@index([libroId])
+  @@index([ejecutadoPorId])
+  @@index([fechaCreacion])
+  @@map("movimientos")
+}
