@@ -122,3 +122,6 @@ Abre [http://localhost:3000](http://localhost:3000) en el navegador.
 - La carpeta `src/generated/prisma` se genera automáticamente; no debe editarse manualmente.
 - Si al clonar el proyecto aparecen errores de tipos de Prisma, ejecuta `npx prisma generate`.
 - Solo debe haber **una instancia** de `npm run dev` corriendo a la vez (puerto 3000).
+
+
+Vercel: https://ing-web-proyecto-evaluativo2.vercel.app/
