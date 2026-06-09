@@ -92,7 +92,7 @@ export default function HomePage() {
       </section>
 
       <footer className="border-t border-slate-200 py-8 text-center text-sm text-slate-500">
-        Proyecto 2 — Ingeniería Web · Universidad de Antioquia
+        Proyecto 2 — Ingeniería Web · Mariana Gallego · Universidad de Antioquia
       </footer>
     </main>
   );
